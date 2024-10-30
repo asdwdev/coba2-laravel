@@ -8,7 +8,7 @@
 
                 <p>By. <a href="/authors/{{ $post->author->username }}"
                         class="text-decoration-none">{{ $post->author->name }}</a> in <a
-                        href="/categories/{{ $post->category->slug }}" class="text-decoration-none">
+                        href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">
                         {{ $post->category->name }}</a></p>
 
                 <img src="/img/hero.jpg" alt="{{ $post->category->name }}" width="1200" height="400" class="img-fluid">
