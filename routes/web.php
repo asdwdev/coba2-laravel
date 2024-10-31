@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -64,7 +65,11 @@ Route::get('/categories', function () {
 //     ]);
 // });
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authentication']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index']); // index digunakan untuk nampilin
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest'); // index digunakan untuk nampilin
 Route::post('/register', [RegisterController::class, 'store']); // store digunakan untuk menyimpan
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
