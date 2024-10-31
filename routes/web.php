@@ -65,4 +65,6 @@ Route::get('/categories', function () {
 // });
 
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/register', [RegisterController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']); // index digunakan untuk nampilin
+Route::post('/register', [RegisterController::class, 'store']); // store digunakan untuk menyimpan
