@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Post;
 use App\Models\User;
@@ -72,4 +73,8 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest'); // index digunakan untuk nampilin
 Route::post('/register', [RegisterController::class, 'store']); // store digunakan untuk menyimpan
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
